@@ -1,0 +1,276 @@
+﻿namespace Myschool.Forms
+{
+    partial class Dashboard
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            TreeNode treeNode1 = new TreeNode("معلومات المدرسة");
+            TreeNode treeNode2 = new TreeNode("السنوات الدراسية");
+            TreeNode treeNode3 = new TreeNode("المراحل و الصفوف");
+            TreeNode treeNode4 = new TreeNode("الإعدادات", new TreeNode[] { treeNode1, treeNode2, treeNode3 });
+            TreeNode treeNode5 = new TreeNode("جميع المدرسين");
+            TreeNode treeNode6 = new TreeNode("إضافة مدرس");
+            TreeNode treeNode7 = new TreeNode("تعديل مدرس");
+            TreeNode treeNode8 = new TreeNode("عن المدرسين");
+            TreeNode treeNode9 = new TreeNode("المدرسين", new TreeNode[] { treeNode5, treeNode6, treeNode7, treeNode8 });
+            TreeNode treeNode10 = new TreeNode("إضافة طالب");
+            TreeNode treeNode11 = new TreeNode("عرض الطلاب");
+            TreeNode treeNode12 = new TreeNode("تعديل طالب");
+            TreeNode treeNode13 = new TreeNode("الطلاب الجدد");
+            TreeNode treeNode14 = new TreeNode("الطلاب", new TreeNode[] { treeNode10, treeNode11, treeNode12, treeNode13 });
+            TreeNode treeNode15 = new TreeNode("عرض أولياء الأمور");
+            TreeNode treeNode16 = new TreeNode("تعديل ولي أمر");
+            TreeNode treeNode17 = new TreeNode("إضافة ولي أمر");
+            TreeNode treeNode18 = new TreeNode("عن أولياء الأمور");
+            TreeNode treeNode19 = new TreeNode("أولياء الأمور", new TreeNode[] { treeNode15, treeNode16, treeNode17, treeNode18 });
+            TreeNode treeNode20 = new TreeNode("التقويم");
+            TreeNode treeNode21 = new TreeNode("الأختبارات");
+            TreeNode treeNode22 = new TreeNode("العطل");
+            TreeNode treeNode23 = new TreeNode("الأحداث");
+            TreeNode treeNode24 = new TreeNode("الحسابات");
+            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            label2 = new Label();
+            panel1 = new Panel();
+            pictureBox2 = new PictureBox();
+            label3 = new Label();
+            panel2 = new Panel();
+            treeView1 = new TreeView();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            panel3 = new Panel();
+            pictureBox3 = new PictureBox();
+            button1 = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.White;
+            label1.BorderStyle = BorderStyle.FixedSingle;
+            label1.Location = new Point(4, 6);
+            label1.Name = "label1";
+            label1.Size = new Size(1321, 59);
+            label1.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.logo1;
+            pictureBox1.Location = new Point(142, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(45, 48);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.White;
+            label2.Location = new Point(74, 18);
+            label2.Name = "label2";
+            label2.Size = new Size(62, 20);
+            label2.TabIndex = 3;
+            label2.Text = "مدرستي";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(pictureBox1);
+            panel1.Controls.Add(label2);
+            panel1.Location = new Point(4, 6);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(206, 59);
+            panel1.TabIndex = 4;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.img_2;
+            pictureBox2.Location = new Point(1264, 14);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(47, 44);
+            pictureBox2.TabIndex = 5;
+            pictureBox2.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.White;
+            label3.Location = new Point(1203, 25);
+            label3.Name = "label3";
+            label3.Size = new Size(53, 20);
+            label3.TabIndex = 6;
+            label3.Text = "Admin";
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.AliceBlue;
+            panel2.Location = new Point(211, 65);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1123, 686);
+            panel2.TabIndex = 7;
+            panel2.Paint += panel2_Paint;
+            // 
+            // treeView1
+            // 
+            treeView1.BackColor = Color.White;
+            treeView1.Location = new Point(3, 124);
+            treeView1.Name = "treeView1";
+            treeNode1.Name = "Node2";
+            treeNode1.Text = "معلومات المدرسة";
+            treeNode2.Name = "Node3";
+            treeNode2.Text = "السنوات الدراسية";
+            treeNode3.Name = "Node5";
+            treeNode3.Text = "المراحل و الصفوف";
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "الإعدادات";
+            treeNode5.Name = "Node6";
+            treeNode5.Text = "جميع المدرسين";
+            treeNode6.Name = "Node7";
+            treeNode6.Text = "إضافة مدرس";
+            treeNode7.Name = "Node8";
+            treeNode7.Text = "تعديل مدرس";
+            treeNode8.Name = "Node9";
+            treeNode8.Text = "عن المدرسين";
+            treeNode9.Name = "Node1";
+            treeNode9.Text = "المدرسين";
+            treeNode10.Name = "Node10";
+            treeNode10.Text = "إضافة طالب";
+            treeNode11.Name = "Node11";
+            treeNode11.Text = "عرض الطلاب";
+            treeNode12.Name = "Node12";
+            treeNode12.Text = "تعديل طالب";
+            treeNode13.Name = "Node13";
+            treeNode13.Text = "الطلاب الجدد";
+            treeNode14.Name = "Node4";
+            treeNode14.Text = "الطلاب";
+            treeNode15.Name = "Node15";
+            treeNode15.Text = "عرض أولياء الأمور";
+            treeNode16.Name = "Node16";
+            treeNode16.Text = "تعديل ولي أمر";
+            treeNode17.Name = "Node17";
+            treeNode17.Text = "إضافة ولي أمر";
+            treeNode18.Name = "Node18";
+            treeNode18.Text = "عن أولياء الأمور";
+            treeNode19.Name = "Node14";
+            treeNode19.Text = "أولياء الأمور";
+            treeNode20.Name = "Node19";
+            treeNode20.Text = "التقويم";
+            treeNode21.Name = "Node20";
+            treeNode21.Text = "الأختبارات";
+            treeNode22.Name = "Node21";
+            treeNode22.Text = "العطل";
+            treeNode23.Name = "Node22";
+            treeNode23.Text = "الأحداث";
+            treeNode24.Name = "Node23";
+            treeNode24.Text = "الحسابات";
+            treeView1.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode9, treeNode14, treeNode19, treeNode20, treeNode21, treeNode22, treeNode23, treeNode24 });
+            treeView1.RightToLeft = RightToLeft.Yes;
+            treeView1.RightToLeftLayout = true;
+            treeView1.Size = new Size(206, 634);
+            treeView1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.White;
+            panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(pictureBox3);
+            panel3.Controls.Add(button1);
+            panel3.Location = new Point(4, 65);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(206, 59);
+            panel3.TabIndex = 4;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = Properties.Resources.icon_1;
+            pictureBox3.Location = new Point(156, 8);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(36, 37);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(-1, -1);
+            button1.Name = "button1";
+            button1.Size = new Size(207, 59);
+            button1.TabIndex = 4;
+            button1.Text = "الصفحة الرئيسية";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // Dashboard
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.AliceBlue;
+            ClientSize = new Size(1329, 753);
+            Controls.Add(panel2);
+            Controls.Add(panel3);
+            Controls.Add(label3);
+            Controls.Add(pictureBox2);
+            Controls.Add(panel1);
+            Controls.Add(label1);
+            Controls.Add(treeView1);
+            MaximizeBox = false;
+            Name = "Dashboard";
+            RightToLeft = RightToLeft.Yes;
+            RightToLeftLayout = true;
+            ShowIcon = false;
+            Text = "الصفحة الرئيسية";
+            Load += Dashboard_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+        private Label label1;
+        private PictureBox pictureBox1;
+        private Label label2;
+        private Panel panel1;
+        private PictureBox pictureBox2;
+        private Label label3;
+        private Panel panel2;
+        private TreeView treeView1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Panel panel3;
+        private PictureBox pictureBox3;
+        private Button button1;
+    }
+}
