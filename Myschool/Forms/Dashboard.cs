@@ -1,4 +1,5 @@
 ﻿using Myschool.Dashboard;
+using Myschool.Forms.StageClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,7 +41,7 @@ namespace Myschool.Forms
             // Load the UserControl when button1 is clicked
             LoadUserControl();
         }
-       
+
         private void LoadUserControl()
         {
             // Clear the panel before adding a new control
@@ -54,6 +55,32 @@ namespace Myschool.Forms
 
             // Add the UserControl to the panel
             panel2.Controls.Add(userControl);
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            // Get the selected node
+            TreeNode selectedNode = e.Node;
+
+            // Build a message to display information about the selected node
+            string message = selectedNode.Text;
+
+            if (message.ToLower() == "المراحل و الصفوف")
+            {
+                LoadUserControlStage();
+            }
+
+        }
+        private void LoadUserControlStage()
+        {
+            // Clear the panel before adding a new control
+            panel2.Controls.Clear();
+
+            UserControlStage userControlStage = new UserControlStage();
+
+            userControlStage.Dock = DockStyle.Fill;
+
+            panel2.Controls.Add(userControlStage);
         }
 
     }

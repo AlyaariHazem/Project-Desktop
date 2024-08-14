@@ -91,7 +91,7 @@
             panel3.Controls.Add(label8);
             panel3.Controls.Add(pictureBox3);
             panel3.Controls.Add(label4);
-            panel3.Location = new Point(841, 35);
+            panel3.Location = new Point(834, 26);
             panel3.Name = "panel3";
             panel3.Size = new Size(265, 170);
             panel3.TabIndex = 8;
@@ -133,7 +133,7 @@
             panel4.Controls.Add(label9);
             panel4.Controls.Add(pictureBox4);
             panel4.Controls.Add(label5);
-            panel4.Location = new Point(572, 35);
+            panel4.Location = new Point(565, 26);
             panel4.Name = "panel4";
             panel4.Size = new Size(263, 170);
             panel4.TabIndex = 7;
@@ -175,7 +175,7 @@
             panel5.Controls.Add(label11);
             panel5.Controls.Add(pictureBox6);
             panel5.Controls.Add(label7);
-            panel5.Location = new Point(15, 35);
+            panel5.Location = new Point(8, 26);
             panel5.Name = "panel5";
             panel5.Size = new Size(255, 170);
             panel5.TabIndex = 6;
@@ -217,7 +217,7 @@
             panel6.Controls.Add(label10);
             panel6.Controls.Add(pictureBox5);
             panel6.Controls.Add(label6);
-            panel6.Location = new Point(281, 35);
+            panel6.Location = new Point(274, 26);
             panel6.Name = "panel6";
             panel6.Size = new Size(266, 170);
             panel6.TabIndex = 5;
@@ -232,7 +232,7 @@
             Controls.Add(panel5);
             Controls.Add(panel6);
             Name = "UserControl1";
-            Size = new Size(1123, 686);
+            Size = new Size(1107, 686);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();

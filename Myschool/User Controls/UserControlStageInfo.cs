@@ -1,5 +1,4 @@
-﻿using Myschool.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,14 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Myschool.Dashboard
+namespace Myschool.User_Controls
 {
-    public partial class UserControl1 : UserControl
+    public partial class UserControlStageInfo : UserControl
     {
-        public UserControl1()
+        public UserControlStageInfo()
         {
             InitializeComponent();
         }
 
+        private void UserControlStageInfo_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             TreeNode treeNode1 = new TreeNode("معلومات المدرسة");
             TreeNode treeNode2 = new TreeNode("السنوات الدراسية");
             TreeNode treeNode3 = new TreeNode("المراحل و الصفوف");
@@ -50,8 +51,10 @@
             TreeNode treeNode20 = new TreeNode("التقويم");
             TreeNode treeNode21 = new TreeNode("الأختبارات");
             TreeNode treeNode22 = new TreeNode("العطل");
-            TreeNode treeNode23 = new TreeNode("الأحداث");
-            TreeNode treeNode24 = new TreeNode("الحسابات");
+            TreeNode treeNode23 = new TreeNode("الحسابات");
+            TreeNode treeNode24 = new TreeNode("المدونات");
+            TreeNode treeNode25 = new TreeNode("الإدارة");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             label1 = new Label();
             pictureBox1 = new PictureBox();
             label2 = new Label();
@@ -60,6 +63,7 @@
             label3 = new Label();
             panel2 = new Panel();
             treeView1 = new TreeView();
+            imageList1 = new ImageList(components);
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             panel3 = new Panel();
             pictureBox3 = new PictureBox();
@@ -106,9 +110,9 @@
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label2);
-            panel1.Location = new Point(4, 6);
+            panel1.Location = new Point(3, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(206, 59);
+            panel1.Size = new Size(227, 59);
             panel1.TabIndex = 4;
             // 
             // pictureBox2
@@ -133,16 +137,18 @@
             // panel2
             // 
             panel2.BackColor = Color.AliceBlue;
-            panel2.Location = new Point(211, 65);
+            panel2.Location = new Point(234, 65);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1123, 686);
+            panel2.Size = new Size(1100, 686);
             panel2.TabIndex = 7;
             panel2.Paint += panel2_Paint;
             // 
             // treeView1
             // 
             treeView1.BackColor = Color.White;
-            treeView1.Location = new Point(3, 124);
+            treeView1.ImageIndex = 0;
+            treeView1.ImageList = imageList1;
+            treeView1.Location = new Point(4, 123);
             treeView1.Name = "treeView1";
             treeNode1.Name = "Node2";
             treeNode1.Text = "معلومات المدرسة";
@@ -150,6 +156,7 @@
             treeNode2.Text = "السنوات الدراسية";
             treeNode3.Name = "Node5";
             treeNode3.Text = "المراحل و الصفوف";
+            treeNode4.ImageKey = "icon-14.png";
             treeNode4.Name = "Node0";
             treeNode4.Text = "الإعدادات";
             treeNode5.Name = "Node6";
@@ -160,6 +167,7 @@
             treeNode7.Text = "تعديل مدرس";
             treeNode8.Name = "Node9";
             treeNode8.Text = "عن المدرسين";
+            treeNode9.ImageKey = "icon-3.png";
             treeNode9.Name = "Node1";
             treeNode9.Text = "المدرسين";
             treeNode10.Name = "Node10";
@@ -170,6 +178,7 @@
             treeNode12.Text = "تعديل طالب";
             treeNode13.Name = "Node13";
             treeNode13.Text = "الطلاب الجدد";
+            treeNode14.ImageKey = "icon-3.png";
             treeNode14.Name = "Node4";
             treeNode14.Text = "الطلاب";
             treeNode15.Name = "Node15";
@@ -180,23 +189,65 @@
             treeNode17.Text = "إضافة ولي أمر";
             treeNode18.Name = "Node18";
             treeNode18.Text = "عن أولياء الأمور";
+            treeNode19.ImageKey = "icon-4.png";
             treeNode19.Name = "Node14";
             treeNode19.Text = "أولياء الأمور";
+            treeNode20.ImageKey = "icon-6.png";
             treeNode20.Name = "Node19";
             treeNode20.Text = "التقويم";
+            treeNode21.ImageKey = "icon-7.png";
             treeNode21.Name = "Node20";
             treeNode21.Text = "الأختبارات";
+            treeNode22.ImageKey = "icon-8.png";
             treeNode22.Name = "Node21";
             treeNode22.Text = "العطل";
-            treeNode23.Name = "Node22";
-            treeNode23.Text = "الأحداث";
-            treeNode24.Name = "Node23";
-            treeNode24.Text = "الحسابات";
-            treeView1.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode9, treeNode14, treeNode19, treeNode20, treeNode21, treeNode22, treeNode23, treeNode24 });
+            treeNode23.ImageKey = "icon-10.png";
+            treeNode23.Name = "Node23";
+            treeNode23.Text = "الحسابات";
+            treeNode24.ImageKey = "icon-17.png";
+            treeNode24.Name = "Node22";
+            treeNode24.Text = "المدونات";
+            treeNode25.ImageKey = "icon-20.png";
+            treeNode25.Name = "Node24";
+            treeNode25.Text = "الإدارة";
+            treeView1.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode9, treeNode14, treeNode19, treeNode20, treeNode21, treeNode22, treeNode23, treeNode24, treeNode25 });
             treeView1.RightToLeft = RightToLeft.Yes;
             treeView1.RightToLeftLayout = true;
-            treeView1.Size = new Size(206, 634);
+            treeView1.SelectedImageIndex = 0;
+            treeView1.Size = new Size(226, 629);
             treeView1.TabIndex = 0;
+            treeView1.AfterSelect += treeView1_AfterSelect;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "icon-1.png");
+            imageList1.Images.SetKeyName(1, "icon-2.png");
+            imageList1.Images.SetKeyName(2, "icon-3.png");
+            imageList1.Images.SetKeyName(3, "icon-4.png");
+            imageList1.Images.SetKeyName(4, "icon-5.png");
+            imageList1.Images.SetKeyName(5, "icon-6.png");
+            imageList1.Images.SetKeyName(6, "icon-7.png");
+            imageList1.Images.SetKeyName(7, "icon-8.png");
+            imageList1.Images.SetKeyName(8, "icon-9.png");
+            imageList1.Images.SetKeyName(9, "icon-10.png");
+            imageList1.Images.SetKeyName(10, "icon-11.png");
+            imageList1.Images.SetKeyName(11, "icon-12.png");
+            imageList1.Images.SetKeyName(12, "icon-13.png");
+            imageList1.Images.SetKeyName(13, "icon-14.png");
+            imageList1.Images.SetKeyName(14, "icon-15.png");
+            imageList1.Images.SetKeyName(15, "icon-17.png");
+            imageList1.Images.SetKeyName(16, "icon-18.png");
+            imageList1.Images.SetKeyName(17, "icon-19.png");
+            imageList1.Images.SetKeyName(18, "icon-20.png");
+            imageList1.Images.SetKeyName(19, "icon-21.png");
+            imageList1.Images.SetKeyName(20, "icon-22.png");
+            imageList1.Images.SetKeyName(21, "icon-23.png");
+            imageList1.Images.SetKeyName(22, "icon-26.png");
+            imageList1.Images.SetKeyName(23, "icon-27.png");
+            imageList1.Images.SetKeyName(24, "icon-28.png");
             // 
             // panel3
             // 
@@ -206,13 +257,13 @@
             panel3.Controls.Add(button1);
             panel3.Location = new Point(4, 65);
             panel3.Name = "panel3";
-            panel3.Size = new Size(206, 59);
+            panel3.Size = new Size(226, 59);
             panel3.TabIndex = 4;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.icon_1;
-            pictureBox3.Location = new Point(156, 8);
+            pictureBox3.Location = new Point(167, 7);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(36, 37);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -221,12 +272,14 @@
             // 
             // button1
             // 
-            button1.Location = new Point(-1, -1);
+            button1.BackColor = Color.White;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Location = new Point(-7, -1);
             button1.Name = "button1";
-            button1.Size = new Size(207, 59);
+            button1.Size = new Size(233, 59);
             button1.TabIndex = 4;
             button1.Text = "الصفحة الرئيسية";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // Dashboard
@@ -272,5 +325,6 @@
         private Panel panel3;
         private PictureBox pictureBox3;
         private Button button1;
+        private ImageList imageList1;
     }
 }
