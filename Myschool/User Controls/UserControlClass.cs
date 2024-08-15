@@ -8,19 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Myschool
+namespace Myschool.User_Controls
 {
-    public partial class Dashbord : UserControl
+    public partial class UserControlClass : UserControl
     {
-        public Dashbord()
+        public UserControlClass()
         {
             InitializeComponent();
         }
 
-        private void Dashbord_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
-        
     }
 }

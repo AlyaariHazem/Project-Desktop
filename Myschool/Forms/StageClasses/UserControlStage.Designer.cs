@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            label4 = new Label();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
             panel1 = new Panel();
+            label4 = new Label();
+            button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -53,6 +53,13 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "تخصيص المدرسة";
             // 
+            // panel1
+            // 
+            panel1.Location = new Point(6, 114);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1054, 518);
+            panel1.TabIndex = 3;
+            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -62,27 +69,6 @@
             label4.Size = new Size(93, 23);
             label4.TabIndex = 0;
             label4.Text = "اسم الطالب";
-            // 
-            // button2
-            // 
-            button2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.Location = new Point(909, 59);
-            button2.Name = "button2";
-            button2.Size = new Size(109, 33);
-            button2.TabIndex = 2;
-            button2.Text = "المراحل";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            button3.Location = new Point(785, 59);
-            button3.Name = "button3";
-            button3.Size = new Size(109, 33);
-            button3.TabIndex = 2;
-            button3.Text = "الصفوف";
-            button3.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -94,12 +80,27 @@
             button4.Text = "الشعب";
             button4.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // button3
             // 
-            panel1.Location = new Point(6, 114);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1054, 518);
-            panel1.TabIndex = 3;
+            button3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            button3.Location = new Point(785, 59);
+            button3.Name = "button3";
+            button3.Size = new Size(109, 33);
+            button3.TabIndex = 2;
+            button3.Text = "الصفوف";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.Location = new Point(909, 59);
+            button2.Name = "button2";
+            button2.Size = new Size(109, 33);
+            button2.TabIndex = 2;
+            button2.Text = "المراحل";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // UserControlStage
             // 

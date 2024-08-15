@@ -1,62 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Myschool.Helpers;
 
 namespace Myschool.Forms
 {
     public partial class login : Form
     {
-        //connection with Database 
-        SqlConnection conn = new SqlConnection("Data source=HAZEM; initial catalog=SchoolDB; Integrated security=true;");
+        private readonly DatabaseHelper _dbHelper;
 
-        public login()
+        public login(DatabaseHelper dbHelper)
         {
             InitializeComponent();
+            _dbHelper = dbHelper;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
-            dashboard.Show();
-            this.Visible = false;
+            string inputUsername = textBox1.Text;
+            string inputPassword = textBox2.Text;
+
+            try
+            {
+                if (ValidateUser(inputUsername, inputPassword))
+                {
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Username or password incorrect");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private bool ValidateUser(string username, string password)
         {
+            string query = "SELECT [Password] FROM Users WHERE UserName = @username";
+            SqlParameter[] parameters = {
+        new SqlParameter("@username", username)
+    };
 
+            using (var dr = _dbHelper.ExecuteReader(query, parameters))
+            {
+                if (dr.Read())
+                {
+                    return dr["Password"].ToString() == password;
+                }
+                return false;
+            }
+        }
+
+
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox2.PasswordChar = checkBox1.Checked ? '\0' : '*';
         }
 
         private void login_Load(object sender, EventArgs e)
         {
-
+            // Load logic if needed
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
-            {
-                try
-                {
-                    conn.Open();
-                    MessageBox.Show("The connection with the database is successful: " + conn.State, "Yes", MessageBoxButtons.OK);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
-            }
+            // Handle text changed event if needed
         }
 
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Handle list view selection changed event if needed 
+        }
     }
 }

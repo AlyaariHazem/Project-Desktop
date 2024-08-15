@@ -41,7 +41,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.Red;
+            button1.BackColor = Color.LimeGreen;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = SystemColors.ControlLightLight;
             button1.Location = new Point(519, 368);
@@ -56,6 +56,7 @@
             // 
             textBox2.Location = new Point(519, 277);
             textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '*';
             textBox2.Size = new Size(298, 27);
             textBox2.TabIndex = 6;
             // 
@@ -70,7 +71,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = SystemColors.GradientInactiveCaption;
+            label2.BackColor = SystemColors.GradientActiveCaption;
             label2.Location = new Point(464, 206);
             label2.Name = "label2";
             label2.Size = new Size(44, 20);
@@ -88,7 +89,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = SystemColors.GradientInactiveCaption;
+            label1.BackColor = SystemColors.GradientActiveCaption;
             label1.Location = new Point(444, 284);
             label1.Name = "label1";
             label1.Size = new Size(69, 20);
@@ -98,7 +99,7 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.BackColor = SystemColors.GradientInactiveCaption;
+            linkLabel1.BackColor = SystemColors.GradientActiveCaption;
             linkLabel1.DisabledLinkColor = Color.White;
             linkLabel1.Location = new Point(523, 444);
             linkLabel1.Name = "linkLabel1";
@@ -109,7 +110,7 @@
             // 
             // listView1
             // 
-            listView1.BackColor = SystemColors.GradientInactiveCaption;
+            listView1.BackColor = SystemColors.GradientActiveCaption;
             listView1.Location = new Point(354, 76);
             listView1.Name = "listView1";
             listView1.RightToLeft = RightToLeft.No;
@@ -117,11 +118,12 @@
             listView1.Size = new Size(576, 620);
             listView1.TabIndex = 10;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.BackColor = SystemColors.GradientInactiveCaption;
+            checkBox1.BackColor = SystemColors.GradientActiveCaption;
             checkBox1.Location = new Point(525, 313);
             checkBox1.Name = "checkBox1";
             checkBox1.RightToLeft = RightToLeft.Yes;

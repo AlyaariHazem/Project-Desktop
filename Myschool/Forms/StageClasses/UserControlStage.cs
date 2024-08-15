@@ -30,7 +30,7 @@ namespace Myschool.Forms.StageClasses
             panel1.Controls.Clear();
 
             // Create an instance of UserControl1
-            UserControlStageInfo userControlStageInfo = new UserControlStageInfo();
+            UserControlStageClass userControlStageInfo = new UserControlStageClass();
 
             // Set the UserControl to fill the panel
             userControlStageInfo.Dock = DockStyle.Fill;
@@ -38,5 +38,23 @@ namespace Myschool.Forms.StageClasses
             // Add the UserControl to the panel
             panel1.Controls.Add(userControlStageInfo);
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            LoadUserControlCLass();
+        }
+
+        private void LoadUserControlCLass()
+        {
+            panel1.Controls.Clear();
+
+            UserControlClass userControlStageClass = new UserControlClass();
+
+            userControlStageClass.Dock = DockStyle.Fill;
+
+            panel1.Controls.Add(userControlStageClass);
+        }
+
+        
+
     }
 }
