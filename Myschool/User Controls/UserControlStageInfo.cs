@@ -1,47 +1,62 @@
-﻿using System;
+﻿using Myschool.Forms.StageClasses;
+using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Myschool.User_Controls
 {
     public partial class UserControlStageClass : UserControl
     {
+        string connectionString = "Data source=HAZEM; initial catalog=SchoolDB; Integrated security=true;";
+
         public UserControlStageClass()
         {
             InitializeComponent();
+
+            // Change header color for DataGridView
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LimeGreen;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+            // Add Action column with a button
+            DataGridViewButtonColumn actionColumn = new DataGridViewButtonColumn();
+            actionColumn.Name = "العملية";
+            actionColumn.HeaderText = "Action";
+            actionColumn.Text = "تعديل/حذف";
+            actionColumn.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(actionColumn);
         }
 
-        private void UserControlStageClass_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
 
         private void LoadData()
         {
-            // Connection with Database
-            string connectionString = "Data source=HAZEM; initial catalog=SchoolDB; Integrated security=true;";
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "SELECT StageName,  Note FROM Stage";
+                string query = "SELECT StageID, StageName, Note, Active FROM Stages";
                 SqlCommand cmd = new SqlCommand(query, conn);
+
                 try
                 {
                     conn.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    sqlDa.Fill(dataTable);
 
-                    // Clear existing items if using a ListBox or similar control
-                    // listBox1.Items.Clear(); 
-
-                    while (dr.Read())
+                    // Add extra columns manually if needed
+                    foreach (DataRow row in dataTable.Rows)
                     {
-                        // Assuming you have TextBox or other controls to display data
-                        textBox1.Text = dr["StageName"].ToString();
-                        textBox2.Text = dr["Note"].ToString();
-                        
-
-                        // Or if using a ListBox, DataGridView, etc.
-                        // listBox1.Items.Add(dr["StageName"].ToString());
+                        dataGridView1.Rows.Add(
+                            row["StageID"],
+                            row["StageName"],
+                            "Class Info",    // Placeholder for class info
+                            30,             // Placeholder for total students
+                            row["Note"],
+                            row["Active"],
+                            true            // Placeholder for Active status
+                        );
                     }
                 }
                 catch (Exception ex)
@@ -53,25 +68,33 @@ namespace Myschool.User_Controls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Add new record to the database
+
             string stageName = textBox1.Text;
             string note = textBox2.Text;
 
-            string connectionString = "Data source=HAZEM; initial catalog=SchoolDB; Integrated security=true;";
+            if (string.IsNullOrEmpty(stageName))
+            {
+                MessageBox.Show("يجب أن تدخل بيانات", "حدث خطأً", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Stage (StageName, Note) VALUES (@stageName, @note)";
+                string query = "INSERT INTO Stages (StageName, Note,Active,HireDate,YearID) VALUES (@stageName, @note,@active,@hireDate,@yearID)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@stageName", stageName);
                 cmd.Parameters.AddWithValue("@note", note);
-                
+                cmd.Parameters.AddWithValue("@active", 1);
+                cmd.Parameters.AddWithValue("@hireDate", DateTime.Now);
+                cmd.Parameters.AddWithValue("@yearID", 1);
+
                 try
                 {
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Record added successfully!");
 
-                    // Refresh data if needed
+                    // Refresh data
                     LoadData();
                 }
                 catch (Exception ex)
@@ -79,6 +102,36 @@ namespace Myschool.User_Controls
                     MessageBox.Show("An error occurred: " + ex.Message);
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            LoadUserControlDeleteEdite();
+        }
+
+        private void LoadUserControlDeleteEdite()
+        {
+            // Clear the panel before adding a new control
+            panel2.Controls.Clear();
+            panel2.Visible = true;
+
+            UserControlDeleteEdite userControlDeleteEdite = new UserControlDeleteEdite();
+
+            userControlDeleteEdite.Dock = DockStyle.Fill;
+
+            panel2.Controls.Add(userControlDeleteEdite);
+        }
+
+        private void UserControlStageClass_Load_1(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            // You can either call LoadData() here or leave it empty
+            LoadData();
+        }
+
+        private void UserControlStageClass_Click_1(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
         }
     }
 }

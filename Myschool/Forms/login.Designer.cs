@@ -152,6 +152,7 @@
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "login";
             Load += login_Load;
             ResumeLayout(false);

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 using Myschool.Helpers;
 
@@ -13,6 +15,24 @@ namespace Myschool.Forms
         {
             InitializeComponent();
             _dbHelper = dbHelper;
+        }
+
+        private bool ValidateUser(string username, string password)
+        {
+            string query = "SELECT Password FROM Users WHERE UserName = @username";
+            SqlParameter[] parameters =
+            {
+                new SqlParameter("@username", username)
+            };
+
+            using (var dr = _dbHelper.ExecuteReader(query, parameters))
+            {
+                if (dr.Read())
+                {
+                    return dr["Password"].ToString() == password;
+                }
+                return false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,25 +58,6 @@ namespace Myschool.Forms
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
-
-        private bool ValidateUser(string username, string password)
-        {
-            string query = "SELECT [Password] FROM Users WHERE UserName = @username";
-            SqlParameter[] parameters = {
-        new SqlParameter("@username", username)
-    };
-
-            using (var dr = _dbHelper.ExecuteReader(query, parameters))
-            {
-                if (dr.Read())
-                {
-                    return dr["Password"].ToString() == password;
-                }
-                return false;
-            }
-        }
-
-
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {

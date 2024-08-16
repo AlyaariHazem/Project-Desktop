@@ -54,7 +54,20 @@ namespace Myschool.Forms.StageClasses
             panel1.Controls.Add(userControlStageClass);
         }
 
-        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            LoadUserControlDivision();
+        }
 
+        private void LoadUserControlDivision()
+        {
+            panel1.Controls.Clear();
+
+            UserControlDivision userControlDivision = new UserControlDivision();
+
+            userControlDivision.Dock = DockStyle.Fill;
+
+            panel1.Controls.Add(userControlDivision);
+        }
     }
 }

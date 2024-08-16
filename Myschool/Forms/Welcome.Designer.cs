@@ -95,6 +95,7 @@
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "الصفحة الرئيسية";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

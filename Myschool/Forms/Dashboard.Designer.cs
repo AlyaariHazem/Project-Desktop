@@ -300,6 +300,7 @@
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "الصفحة الرئيسية";
             Load += Dashboard_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
