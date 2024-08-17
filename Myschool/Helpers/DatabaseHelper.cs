@@ -16,7 +16,7 @@ namespace Myschool.Helpers
         }
 
         public static string GetConnectionString(string name)
-        {
+        {   
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
