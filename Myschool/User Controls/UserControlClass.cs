@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Myschool.Helpers;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -8,7 +9,7 @@ namespace Myschool.User_Controls
 {
     public partial class UserControlClass : UserControl
     {
-        private string connectionString = "Data source=HAZEM; initial catalog=SchoolDB; Integrated security=true;";
+        private string connectionString = "Data source=DESKTOP-I31TB94; initial catalog=SchoolDB; Integrated security=true;";
 
         public UserControlClass()
         {
@@ -33,74 +34,99 @@ namespace Myschool.User_Controls
 
         private void LoadData()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (var db = new DatabaseHelper())
             {
-                // Correct query to join Classes and Stages tables
                 string query = @"
                     SELECT c.ClassID, c.ClassName, s.StageName, s.Note, s.Active 
                     FROM Classes c 
                     INNER JOIN Stages s ON c.StageID = s.StageID";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                try
+                DataTable dataTable = db.Select(query);
+                dataGridView1.Rows.Clear();
+                foreach (DataRow row in dataTable.Rows)
                 {
-                    conn.Open();
-                    SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
-                    DataTable dataTable = new DataTable();
-                    sqlDa.Fill(dataTable);
-
-                    // Clear existing rows before adding new data
-                    dataGridView1.Rows.Clear();
-
-                    // Add rows to the DataGridView
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        dataGridView1.Rows.Add(
-                            row["ClassID"],
-                            row["ClassName"],
-                            row["StageName"],
-                            row["Note"],
-                            row["Active"],
-                            true  // Placeholder for active status
-                        );
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
+                    dataGridView1.Rows.Add(
+                        row["ClassID"],
+                        row["ClassName"],
+                        row["StageName"],
+                        row["Note"],
+                        row["Active"],
+                        true  // Placeholder for active status
+                    );
                 }
             }
+
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    // Correct query to join Classes and Stages tables
+            //string query = @"
+            //    SELECT c.ClassID, c.ClassName, s.StageName, s.Note, s.Active 
+            //    FROM Classes c 
+            //    INNER JOIN Stages s ON c.StageID = s.StageID";
+
+            //    SqlCommand cmd = new SqlCommand(query, conn);
+
+            //    try
+            //    {
+            //        conn.Open();
+            //        SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            //        DataTable dataTable = new DataTable();
+            //        sqlDa.Fill(dataTable);
+
+            //        // Clear existing rows before adding new data
+            //        dataGridView1.Rows.Clear();
+
+            //        // Add rows to the DataGridView
+            //foreach (DataRow row in dataTable.Rows)
+            //{
+            //    dataGridView1.Rows.Add(
+            //        row["ClassID"],
+            //        row["ClassName"],
+            //        row["StageName"],
+            //        row["Note"],
+            //        row["Active"],
+            //        true  // Placeholder for active status
+            //    );
+            //}
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("An error occurred: " + ex.Message);
+            //    }
+            //}
+
+
+
         }
 
         private void LoadStagesIntoComboBox()
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                string query = "SELECT StageID, StageName FROM Stages";
-                SqlCommand cmd = new SqlCommand(query, conn);
+            //using (SqlConnection conn = new SqlConnection(connectionString))
+            //{
+            //    string query = "SELECT StageID, StageName FROM Stages";
+            //    SqlCommand cmd = new SqlCommand(query, conn);
 
-                try
-                {
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
+            //    try
+            //    {
+            //        conn.Open();
+            //        SqlDataReader reader = cmd.ExecuteReader();
 
-                    comboBox1.Items.Clear();
-                    while (reader.Read())
-                    {
-                        // Add each StageName to the ComboBox
-                        comboBox1.Items.Add(new { StageID = reader["StageID"], StageName = reader["StageName"].ToString() });
-                    }
+            //        comboBox1.Items.Clear();
+            //        while (reader.Read())
+            //        {
+            //            // Add each StageName to the ComboBox
+            //            comboBox1.Items.Add(new { StageID = reader["StageID"], StageName = reader["StageName"].ToString() });
+            //        }
 
-                    // Set the ComboBox to display StageName
-                    comboBox1.DisplayMember = "StageName";
-                    comboBox1.ValueMember = "StageID";
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-            }
+            //        // Set the ComboBox to display StageName
+            //        comboBox1.DisplayMember = "StageName";
+            //        comboBox1.ValueMember = "StageID";
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("An error occurred: " + ex.Message);
+            //    }
+            //}
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,7 +137,7 @@ namespace Myschool.User_Controls
         private void button1_Click(object sender, EventArgs e)
         {
             dynamic selectedItem = comboBox1.SelectedItem;
-            string stageName = selectedItem?.StageName;
+            string stageName = selectedItem.StageName;
             string note = textBox2.Text;
 
             if (string.IsNullOrEmpty(stageName) || string.IsNullOrEmpty(note))
@@ -120,28 +146,25 @@ namespace Myschool.User_Controls
                 return;
             }
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+
+
+
+            using (var db = new DatabaseHelper())
             {
-                string query = "INSERT INTO Classes (ClassName, ClassYear, StageID) VALUES (@className, @classYear, @stageID)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@className", stageName);
-                cmd.Parameters.AddWithValue("@classYear", DateTime.Now.Year);
-                cmd.Parameters.AddWithValue("@stageID", selectedItem?.StageID);
-
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Record added successfully!");
-
-                    // Refresh data
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
+                db.Insert("Classes", new Dictionary<string, object>
+    {
+        { "ClassName", stageName },
+        { "ClassYear", DateTime.Now.Year },
+        { "StageID", selectedItem.StageID }
+    });
             }
+
+
+
+
+
+          
+
         }
 
         private void UserControlClass_Load(object sender, EventArgs e)
@@ -153,6 +176,11 @@ namespace Myschool.User_Controls
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Handle DataGridView cell click events
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

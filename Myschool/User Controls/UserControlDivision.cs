@@ -13,7 +13,7 @@ namespace Myschool.User_Controls
 {
     public partial class UserControlDivision : UserControl
     {
-        string connectionString = "Data source=HAZEM; initial catalog=SchoolDB; Integrated security=true;";
+        string connectionString = "Data source=DESKTOP-I31TB94; initial catalog=SchoolDB; Integrated security=true;";
         public UserControlDivision()
         {
             InitializeComponent();
@@ -95,6 +95,11 @@ namespace Myschool.User_Controls
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void UserControlDivision_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
