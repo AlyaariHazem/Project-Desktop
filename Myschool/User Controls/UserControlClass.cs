@@ -56,44 +56,7 @@ namespace Myschool.User_Controls
                 }
             }
 
-            //using (SqlConnection conn = new SqlConnection(connectionString))
-            //{
-            //    // Correct query to join Classes and Stages tables
-            //string query = @"
-            //    SELECT c.ClassID, c.ClassName, s.StageName, s.Note, s.Active 
-            //    FROM Classes c 
-            //    INNER JOIN Stages s ON c.StageID = s.StageID";
-
-            //    SqlCommand cmd = new SqlCommand(query, conn);
-
-            //    try
-            //    {
-            //        conn.Open();
-            //        SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
-            //        DataTable dataTable = new DataTable();
-            //        sqlDa.Fill(dataTable);
-
-            //        // Clear existing rows before adding new data
-            //        dataGridView1.Rows.Clear();
-
-            //        // Add rows to the DataGridView
-            //foreach (DataRow row in dataTable.Rows)
-            //{
-            //    dataGridView1.Rows.Add(
-            //        row["ClassID"],
-            //        row["ClassName"],
-            //        row["StageName"],
-            //        row["Note"],
-            //        row["Active"],
-            //        true  // Placeholder for active status
-            //    );
-            //}
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("An error occurred: " + ex.Message);
-            //    }
-            //}
+           
 
 
 
@@ -101,32 +64,34 @@ namespace Myschool.User_Controls
 
         private void LoadStagesIntoComboBox()
         {
-            //using (SqlConnection conn = new SqlConnection(connectionString))
-            //{
-            //    string query = "SELECT StageID, StageName FROM Stages";
-            //    SqlCommand cmd = new SqlCommand(query, conn);
 
-            //    try
-            //    {
-            //        conn.Open();
-            //        SqlDataReader reader = cmd.ExecuteReader();
 
-            //        comboBox1.Items.Clear();
-            //        while (reader.Read())
-            //        {
-            //            // Add each StageName to the ComboBox
-            //            comboBox1.Items.Add(new { StageID = reader["StageID"], StageName = reader["StageName"].ToString() });
-            //        }
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT StageID, StageName FROM Stages";
+                SqlCommand cmd = new SqlCommand(query, conn);
 
-            //        // Set the ComboBox to display StageName
-            //        comboBox1.DisplayMember = "StageName";
-            //        comboBox1.ValueMember = "StageID";
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("An error occurred: " + ex.Message);
-            //    }
-            //}
+                try
+                {
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    comboBox1.Items.Clear();
+                    while (reader.Read())
+                    {
+                        // Add each StageName to the ComboBox
+                        comboBox1.Items.Add(new { StageID = reader["StageID"], StageName = reader["StageName"].ToString() });
+                    }
+
+                    // Set the ComboBox to display StageName
+                    comboBox1.DisplayMember = "StageName";
+                    comboBox1.ValueMember = "StageID";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
