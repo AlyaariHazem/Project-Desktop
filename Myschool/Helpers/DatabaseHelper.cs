@@ -118,6 +118,7 @@ namespace Myschool.Helpers
             return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
+<<<<<<< HEAD
         public DataTable Select(string selectQuery)
         {
             try
@@ -154,6 +155,47 @@ namespace Myschool.Helpers
             catch (Exception ex)
             {
                 throw new Exception("Error deleting data: " + ex.Message);
+=======
+        // Function for INSERT operation
+        public int Insert(string query, SqlParameter[] parameters)
+        {
+            return ExecuteNonQuery(query, parameters);
+        }
+
+        // Function for UPDATE operation
+        public int Update(string query, SqlParameter[] parameters)
+        {
+            return ExecuteNonQuery(query, parameters);
+        }
+
+        // Function for DELETE operation
+        public int Delete(string query, SqlParameter[] parameters)
+        {
+            return ExecuteNonQuery(query, parameters);
+        }
+
+        // Function for CREATE operation
+        public int Create(string query)
+        {
+            return ExecuteNonQuery(query);
+        }
+
+        // Reusable method to execute non-query commands (INSERT, UPDATE, DELETE, CREATE)
+        private int ExecuteNonQuery(string query, SqlParameter[] parameters = null)
+        {
+            // Ensure the connection is open
+            OpenConnection();
+
+            using (SqlCommand cmd = new SqlCommand(query, _connection))
+            {
+                if (parameters != null)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
+
+                // Execute the command and return the number of rows affected
+                return cmd.ExecuteNonQuery();
+>>>>>>> Hazem-MySchool
             }
         }
 
@@ -163,4 +205,8 @@ namespace Myschool.Helpers
             _connection.Dispose();
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Hazem-MySchool

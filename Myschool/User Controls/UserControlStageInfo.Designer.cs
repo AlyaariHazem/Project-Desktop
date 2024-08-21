@@ -41,6 +41,7 @@
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
+            Column33 = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -112,8 +113,8 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.AliceBlue;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, Column2, Column3, Column4, Column5, Column6 });
-            dataGridView1.Location = new Point(8, 135);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, Column2, Column3, Column4, Column5, Column6, Column33 });
+            dataGridView1.Location = new Point(17, 136);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RightToLeft = RightToLeft.Yes;
             dataGridView1.RowHeadersWidth = 51;
@@ -159,6 +160,12 @@
             Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
             // 
+            // Column33
+            // 
+            Column33.HeaderText = "العملية";
+            Column33.MinimumWidth = 6;
+            Column33.Name = "Column33";
+            // 
             // panel2
             // 
             panel2.BackColor = Color.AliceBlue;
@@ -185,6 +192,16 @@
             ResumeLayout(false);
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private Panel panel1;
@@ -202,5 +219,6 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private Panel panel2;
+        private DataGridViewTextBoxColumn Column33;
     }
 }

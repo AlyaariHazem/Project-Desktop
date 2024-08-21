@@ -20,16 +20,7 @@ namespace Myschool.User_Controls
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LimeGreen;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-
-            // Add Action column with a button
-            DataGridViewButtonColumn actionColumn = new DataGridViewButtonColumn();
-            actionColumn.Name = "العملية";
-            actionColumn.HeaderText = "Action";
-            actionColumn.Text = "تعديل/حذف";
-            actionColumn.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(actionColumn);
         }
-
 
         private void LoadData()
         {
@@ -45,17 +36,43 @@ namespace Myschool.User_Controls
                     DataTable dataTable = new DataTable();
                     sqlDa.Fill(dataTable);
 
-                    // Add extra columns manually if needed
+                    // Clear existing rows before adding new data
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear(); // Clear existing columns
+
+                    // Add columns explicitly
+                    dataGridView1.Columns.Add("StageID", "#");
+                    dataGridView1.Columns.Add("StageName", "اسم المرحلة");
+                    dataGridView1.Columns.Add("ClassInfo", "الصفوف");
+                    dataGridView1.Columns.Add("TotalStudents", "إجمالي الطلاب");
+                    dataGridView1.Columns.Add("Note", "ملاحظة");
+                    dataGridView1.Columns.Add("Active", "الحالة");
+
+                    // Add Edit and Delete buttons 
+                    DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn();
+                    editColumn.Name = "Edit";
+                    editColumn.HeaderText = "تعديل";
+                    editColumn.Text = "تعديل";
+                    editColumn.UseColumnTextForButtonValue = true;
+                    dataGridView1.Columns.Add(editColumn);
+
+                    DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn();
+                    deleteColumn.Name = "Delete";
+                    deleteColumn.HeaderText = "حـذف";
+                    deleteColumn.Text = "حـذف";
+                    deleteColumn.UseColumnTextForButtonValue = true;
+                    dataGridView1.Columns.Add(deleteColumn);
+
+                    // Populate rows with data
                     foreach (DataRow row in dataTable.Rows)
                     {
                         dataGridView1.Rows.Add(
                             row["StageID"],
                             row["StageName"],
-                            "Class Info",    // Placeholder for class info
-                            30,             // Placeholder for total students
+                            "Class Info", // Placeholder for class info
+                            30, // Placeholder for total students
                             row["Note"],
-                            row["Active"],
-                            true            // Placeholder for Active status
+                            row["Active"]
                         );
                     }
                 }
@@ -66,9 +83,9 @@ namespace Myschool.User_Controls
             }
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
-
             string stageName = textBox1.Text;
             string note = textBox2.Text;
 
@@ -80,7 +97,7 @@ namespace Myschool.User_Controls
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Stages (StageName, Note,Active,HireDate,YearID) VALUES (@stageName, @note,@active,@hireDate,@yearID)";
+                string query = "INSERT INTO Stages (StageName, Note, Active, HireDate, YearID) VALUES (@stageName, @note, @active, @hireDate, @yearID)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@stageName", stageName);
                 cmd.Parameters.AddWithValue("@note", note);
@@ -106,26 +123,88 @@ namespace Myschool.User_Controls
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            LoadUserControlDeleteEdite();
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                // Ensure the StageID column exists
+                string selectedStageID = dataGridView1.Rows[e.RowIndex].Cells["StageID"].Value.ToString();
+
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "Edit")
+                {
+                    // Open the edit form and pass the selected StageID
+                    EditStage(selectedStageID);
+                }
+                else if (dataGridView1.Columns[e.ColumnIndex].Name == "Delete")
+                {
+                    // Prompt to confirm and delete the selected record
+                    DeleteStage(selectedStageID);
+                }
+            }
         }
 
-        private void LoadUserControlDeleteEdite()
+
+        private void EditStage(string stageID)
         {
-            // Clear the panel before adding a new control
-            panel2.Controls.Clear();
-            panel2.Visible = true;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT StageName, Note FROM Stages WHERE StageID = @stageID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@stageID", stageID);
 
-            UserControlDeleteEdite userControlDeleteEdite = new UserControlDeleteEdite();
+                try
+                {
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-            userControlDeleteEdite.Dock = DockStyle.Fill;
+                    if (reader.Read())
+                    {
+                        // Populate the text boxes with the data from the database
+                        textBox1.Text = reader["StageName"].ToString();
+                        textBox2.Text = reader["Note"].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record not found.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
 
-            panel2.Controls.Add(userControlDeleteEdite);
+
+        private void DeleteStage(string stageID)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this stage?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = "DELETE FROM Stages WHERE StageID = @stageID";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@stageID", stageID);
+
+                    try
+                    {
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        
+                        // Refresh data
+                        LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("An error occurred: " + ex.Message);
+                    }
+                }
+            }
         }
 
         private void UserControlStageClass_Load_1(object sender, EventArgs e)
         {
             panel2.Visible = false;
-            // You can either call LoadData() here or leave it empty
+            // Load data when the control is loaded
             LoadData();
         }
 
