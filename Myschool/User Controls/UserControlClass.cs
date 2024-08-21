@@ -65,32 +65,9 @@ namespace Myschool.User_Controls
         private void LoadStagesIntoComboBox()
         {
 
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (var db = new DatabaseHelper())
             {
-                string query = "SELECT StageID, StageName FROM Stages";
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                try
-                {
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    comboBox1.Items.Clear();
-                    while (reader.Read())
-                    {
-                        // Add each StageName to the ComboBox
-                        comboBox1.Items.Add(new { StageID = reader["StageID"], StageName = reader["StageName"].ToString() });
-                    }
-
-                    // Set the ComboBox to display StageName
-                    comboBox1.DisplayMember = "StageName";
-                    comboBox1.ValueMember = "StageID";
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
+                db.FillComboBox(comboBox1, "Stages", "StageName", "StageID");
             }
         }
 

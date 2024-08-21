@@ -55,10 +55,15 @@ namespace Myschool.Helpers
             }
         }
 
-      
+
 
         public void Insert(string tableName, Dictionary<string, object> values)
         {
+            if (values == null || values.Count == 0)
+            {
+                throw new ArgumentException("Values dictionary cannot be null or empty.", nameof(values));
+            }
+
             try
             {
                 OpenConnection();
@@ -70,7 +75,7 @@ namespace Myschool.Helpers
                 {
                     foreach (var kvp in values)
                     {
-                        cmd.Parameters.AddWithValue("@" + kvp.Key, kvp.Value ?? DBNull.Value);
+                        cmd.Parameters.Add(new SqlParameter("@" + kvp.Key, kvp.Value ?? DBNull.Value));
                     }
                     cmd.ExecuteNonQuery();
                 }
@@ -83,6 +88,11 @@ namespace Myschool.Helpers
 
         public void Update(string tableName, Dictionary<string, object> values, string whereClause)
         {
+            if (values == null || values.Count == 0)
+            {
+                throw new ArgumentException("Values dictionary cannot be null or empty.", nameof(values));
+            }
+
             try
             {
                 OpenConnection();
@@ -93,7 +103,7 @@ namespace Myschool.Helpers
                 {
                     foreach (var kvp in values)
                     {
-                        cmd.Parameters.AddWithValue("@" + kvp.Key, kvp.Value ?? DBNull.Value);
+                        cmd.Parameters.Add(new SqlParameter("@" + kvp.Key, kvp.Value ?? DBNull.Value));
                     }
                     cmd.ExecuteNonQuery();
                 }
@@ -103,6 +113,26 @@ namespace Myschool.Helpers
                 throw new Exception("Error updating data: " + ex.Message);
             }
         }
+        public void ExecuteNonQuery(string query, SqlParameter[] parameters = null)
+        {
+            try
+            {
+                OpenConnection();
+                using (SqlCommand cmd = new SqlCommand(query, _connection))
+                {
+                    if (parameters != null)
+                    {
+                        cmd.Parameters.AddRange(parameters);
+                    }
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error executing non-query: " + ex.Message);
+            }
+        }
+
         public SqlDataReader ExecuteReader(string query, SqlParameter[] parameters = null)
         {
             // Ensure the connection is open
@@ -118,7 +148,6 @@ namespace Myschool.Helpers
             return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
-<<<<<<< HEAD
         public DataTable Select(string selectQuery)
         {
             try
@@ -138,9 +167,9 @@ namespace Myschool.Helpers
             {
                 throw new Exception("Error selecting data: " + ex.Message);
             }
-        } 
+        }
 
-        
+
         public void Delete(string tableName, string whereClause)
         {
             try
@@ -155,49 +184,37 @@ namespace Myschool.Helpers
             catch (Exception ex)
             {
                 throw new Exception("Error deleting data: " + ex.Message);
-=======
-        // Function for INSERT operation
-        public int Insert(string query, SqlParameter[] parameters)
-        {
-            return ExecuteNonQuery(query, parameters);
-        }
-
-        // Function for UPDATE operation
-        public int Update(string query, SqlParameter[] parameters)
-        {
-            return ExecuteNonQuery(query, parameters);
-        }
-
-        // Function for DELETE operation
-        public int Delete(string query, SqlParameter[] parameters)
-        {
-            return ExecuteNonQuery(query, parameters);
-        }
-
-        // Function for CREATE operation
-        public int Create(string query)
-        {
-            return ExecuteNonQuery(query);
-        }
-
-        // Reusable method to execute non-query commands (INSERT, UPDATE, DELETE, CREATE)
-        private int ExecuteNonQuery(string query, SqlParameter[] parameters = null)
-        {
-            // Ensure the connection is open
-            OpenConnection();
-
-            using (SqlCommand cmd = new SqlCommand(query, _connection))
-            {
-                if (parameters != null)
-                {
-                    cmd.Parameters.AddRange(parameters);
-                }
-
-                // Execute the command and return the number of rows affected
-                return cmd.ExecuteNonQuery();
->>>>>>> Hazem-MySchool
             }
         }
+
+
+        public void FillComboBox(ComboBox comboBox, string tableName, string displayColumn, string valueColumn)
+        {
+            // Clear existing items
+            comboBox.Items.Clear();
+
+
+            try
+            {
+                OpenConnection();
+
+
+                string query = $"SELECT {displayColumn}, {valueColumn} FROM {tableName}";
+                SqlDataAdapter da = new SqlDataAdapter(query, _connection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                comboBox.DataSource = dt;
+                comboBox.DisplayMember = displayColumn;
+                comboBox.ValueMember = valueColumn;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+        }
+
 
         public void Dispose()
         {
@@ -205,8 +222,4 @@ namespace Myschool.Helpers
             _connection.Dispose();
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> Hazem-MySchool

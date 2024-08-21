@@ -42,7 +42,6 @@
             Column5 = new DataGridViewTextBoxColumn();
             Column6 = new DataGridViewTextBoxColumn();
             Column33 = new DataGridViewTextBoxColumn();
-            panel2 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -166,20 +165,11 @@
             Column33.MinimumWidth = 6;
             Column33.Name = "Column33";
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.AliceBlue;
-            panel2.Location = new Point(70, 275);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(168, 99);
-            panel2.TabIndex = 4;
-            // 
             // UserControlStageClass
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             Name = "UserControlStageClass";
@@ -218,7 +208,6 @@
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
-        private Panel panel2;
         private DataGridViewTextBoxColumn Column33;
     }
 }
