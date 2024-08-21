@@ -103,6 +103,20 @@ namespace Myschool.Helpers
                 throw new Exception("Error updating data: " + ex.Message);
             }
         }
+        public SqlDataReader ExecuteReader(string query, SqlParameter[] parameters = null)
+        {
+            // Ensure the connection is open
+            OpenConnection();
+
+            SqlCommand cmd = new SqlCommand(query, _connection);
+            if (parameters != null)
+            {
+                cmd.Parameters.AddRange(parameters);
+            }
+
+            // Execute the command and return the reader
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        }
 
         public DataTable Select(string selectQuery)
         {
@@ -123,7 +137,7 @@ namespace Myschool.Helpers
             {
                 throw new Exception("Error selecting data: " + ex.Message);
             }
-        }
+        } 
 
         
         public void Delete(string tableName, string whereClause)
