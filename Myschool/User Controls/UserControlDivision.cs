@@ -23,14 +23,6 @@ namespace Myschool.User_Controls
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LimeGreen;
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-
-            // Add Action column with a button
-            DataGridViewButtonColumn actionColumn = new DataGridViewButtonColumn();
-            actionColumn.Name = "العملية";
-            actionColumn.HeaderText = "Action";
-            actionColumn.Text = "تعديل/حذف";
-            actionColumn.UseColumnTextForButtonValue = true;
-            dataGridView1.Columns.Add(actionColumn);
         }
 
         private void LoadData()
@@ -53,7 +45,7 @@ namespace Myschool.User_Controls
                         dataGridView1.Rows.Add(
                             row["DivisionID"],
                             row["DivisionName"],
-                            "Class Info",    // Placeholder for class info
+                            "الصفوف",    // Placeholder for class info
                             30,             // Placeholder for total students
                             row["Note"],
                             row["Active"],
@@ -79,6 +71,7 @@ namespace Myschool.User_Controls
 
         private void button1_Click(object sender, EventArgs e)
         {
+
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
