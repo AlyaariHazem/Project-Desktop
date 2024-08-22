@@ -191,6 +191,35 @@ namespace Myschool.Helpers
             ExecuteNonQuery(query, parameters);
         }
 
+
+        public void FillComboBox(ComboBox comboBox, string tableName, string displayColumn, string valueColumn)
+        {
+            // Clear existing items
+            comboBox.Items.Clear();
+
+
+            try
+            {
+                OpenConnection();
+
+
+                string query = $"SELECT {displayColumn}, {valueColumn} FROM {tableName}";
+                SqlDataAdapter da = new SqlDataAdapter(query, _connection);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                comboBox.DataSource = dt;
+                comboBox.DisplayMember = displayColumn;
+                comboBox.ValueMember = valueColumn;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+        }
+
+
         public void Dispose()
         {
             CloseConnection();
