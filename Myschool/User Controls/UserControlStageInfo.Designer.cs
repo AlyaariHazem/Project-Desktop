@@ -59,6 +59,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1054, 130);
             panel1.TabIndex = 2;
+            panel1.Click += panel1_Click;
             // 
             // textBox2
             // 

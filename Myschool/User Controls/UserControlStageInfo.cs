@@ -92,6 +92,10 @@ namespace Myschool.User_Controls
             {
                 SaveChanges();
             }
+            else
+            {
+                AddStage();
+            }
         }
 
         // Method to add a new stage
@@ -240,6 +244,8 @@ namespace Myschool.User_Controls
                 }
                 else
                 {
+                    textBox1.Text = "";
+                    textBox2.Text = "";
                     button1.Text = "إضافة+";
                     AddStage();
                 }
@@ -254,6 +260,13 @@ namespace Myschool.User_Controls
         private void UserControlStageClass_Load_1(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            button1.Text = "إضافة+";
         }
     }
 }

@@ -50,7 +50,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(232, 27);
             textBox2.TabIndex = 8;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
@@ -58,7 +57,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(234, 27);
             textBox1.TabIndex = 9;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // button1
             // 
@@ -80,7 +78,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(168, 99);
             panel2.TabIndex = 11;
-            panel2.Paint += panel2_Paint;
             // 
             // dataGridView1
             // 
@@ -143,7 +140,6 @@
             label2.Size = new Size(83, 20);
             label2.TabIndex = 5;
             label2.Text = "اسم الشعبة";
-            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -153,7 +149,6 @@
             label1.Size = new Size(78, 20);
             label1.TabIndex = 6;
             label1.Text = "اسم الصف";
-            label1.Click += label1_Click;
             // 
             // UserControlDivision
             // 

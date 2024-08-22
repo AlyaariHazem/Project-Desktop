@@ -186,6 +186,10 @@ namespace Myschool.Helpers
                 throw new Exception("Error deleting data: " + ex.Message);
             }
         }
+        public void SaveChanges(string query, SqlParameter[] parameters = null)
+        {
+            ExecuteNonQuery(query, parameters);
+        }
 
         public void Dispose()
         {
