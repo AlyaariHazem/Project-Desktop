@@ -196,16 +196,15 @@ namespace Myschool.User_Controls
 
             using (var db = new DatabaseHelper())
             {
-                string query = "UPDATE Divisions SET DivisionName = @DivisionName, ClassID = @ClassID WHERE DivisionID = @DivisionID";
-                SqlParameter[] parameters = {
-                    new SqlParameter("@DivisionName", divisionName),
-                    new SqlParameter("@ClassID", classID),
-                    new SqlParameter("@DivisionID", hiddenDivisionID)
-                };
+                var values = new Dictionary<string, object>
+        {
+            { "DivisionName", divisionName },
+            { "ClassID", classID }
+        };
 
                 try
                 {
-                    db.ExecuteNonQuery(query, parameters);
+                    db.Update("Divisions", values, $"DivisionID = {hiddenDivisionID}");
                     MessageBox.Show("Record updated successfully!");
 
                     // Refresh the data

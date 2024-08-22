@@ -180,16 +180,15 @@ namespace Myschool.User_Controls
 
             using (var db = new DatabaseHelper())
             {
-                string query = "UPDATE Stages SET StageName = @stageName, Note = @note WHERE StageID = @stageID";
-                SqlParameter[] parameters = {
-                    new SqlParameter("@stageName", stageName),
-                    new SqlParameter("@note", note),
-                    new SqlParameter("@stageID", hiddenStageID)
+                var values = new Dictionary<string, object>
+                {
+                    { "StageName", stageName },
+                    { "Note", note }
                 };
 
                 try
                 {
-                    db.ExecuteNonQuery(query, parameters);
+                    db.Update("Stages", values, $"StageID = {hiddenStageID}");
                     MessageBox.Show("Record updated successfully!");
 
                     // Refresh the data
