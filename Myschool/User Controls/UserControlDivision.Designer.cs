@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             textBox2 = new TextBox();
-            textBox1 = new TextBox();
             button1 = new Button();
-            panel2 = new Panel();
             dataGridView1 = new DataGridView();
+            label2 = new Label();
+            label1 = new Label();
+            comboBox1 = new ComboBox();
             dataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
-            label2 = new Label();
-            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -50,13 +50,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(232, 27);
             textBox2.TabIndex = 8;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(798, 47);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(234, 27);
-            textBox1.TabIndex = 9;
             // 
             // button1
             // 
@@ -71,22 +64,30 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.AliceBlue;
-            panel2.Location = new Point(71, 271);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(168, 99);
-            panel2.TabIndex = 11;
-            // 
             // dataGridView1
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.AliceBlue;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, Column2, Column3, Column4, Column5, Column6 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, Column2, Column3, Column4, Column5 });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.Location = new Point(9, 131);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RightToLeft = RightToLeft.Yes;
@@ -95,6 +96,33 @@
             dataGridView1.Size = new Size(1037, 375);
             dataGridView1.TabIndex = 10;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(622, 13);
+            label2.Name = "label2";
+            label2.Size = new Size(83, 20);
+            label2.TabIndex = 5;
+            label2.Text = "اسم الشعبة";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(948, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(78, 20);
+            label1.TabIndex = 6;
+            label1.Text = "اسم الصف";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(796, 47);
+            comboBox1.Name = "comboBox1";
+            comboBox1.RightToLeft = RightToLeft.Yes;
+            comboBox1.Size = new Size(230, 28);
+            comboBox1.TabIndex = 14;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -126,42 +154,18 @@
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
             // 
-            // Column6
-            // 
-            Column6.HeaderText = "الحالة";
-            Column6.MinimumWidth = 6;
-            Column6.Name = "Column6";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(641, 13);
-            label2.Name = "label2";
-            label2.Size = new Size(83, 20);
-            label2.TabIndex = 5;
-            label2.Text = "اسم الشعبة";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(948, 13);
-            label1.Name = "label1";
-            label1.Size = new Size(78, 20);
-            label1.TabIndex = 6;
-            label1.Text = "اسم الصف";
-            // 
             // UserControlDivision
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
+            Controls.Add(comboBox1);
             Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(button1);
-            Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(label2);
             Controls.Add(label1);
+            Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "UserControlDivision";
             Size = new Size(1054, 518);
             Load += UserControlDivision_Load;
@@ -173,17 +177,15 @@
         #endregion
 
         private TextBox textBox2;
-        private TextBox textBox1;
         private Button button1;
-        private Panel panel2;
         private DataGridView dataGridView1;
         private Label label2;
         private Label label1;
+        private ComboBox comboBox1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
     }
 }

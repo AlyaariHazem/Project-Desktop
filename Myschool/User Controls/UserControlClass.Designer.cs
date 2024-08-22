@@ -46,6 +46,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.AliceBlue;
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(button1);
@@ -67,6 +68,7 @@
             comboBox1.RightToLeft = RightToLeft.Yes;
             comboBox1.Size = new Size(230, 28);
             comboBox1.TabIndex = 13;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // textBox2
             // 

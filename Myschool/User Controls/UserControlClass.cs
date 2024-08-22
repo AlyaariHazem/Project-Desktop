@@ -86,7 +86,6 @@ namespace Myschool.User_Controls
 
         private void LoadStagesIntoComboBox()
         {
-<<<<<<< HEAD
             using (var db = new DatabaseHelper())
             {
                 string query = "SELECT StageID, StageName FROM Stages";
@@ -227,12 +226,6 @@ namespace Myschool.User_Controls
                 {
                     MessageBox.Show("An error occurred: " + ex.Message);
                 }
-=======
-
-            using (var db = new DatabaseHelper())
-            {
-                db.FillComboBox(comboBox1, "Stages", "StageName", "StageID");
->>>>>>> b8ddd1a0a56d09bd09402e3aeb05d7f4e0693d5b
             }
         }
 
@@ -316,6 +309,11 @@ namespace Myschool.User_Controls
             comboBox1.SelectedIndex = -1;
             textBox2.Clear();
             button1.Text = "إضافة+";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
