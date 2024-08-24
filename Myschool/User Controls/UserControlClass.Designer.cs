@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel1 = new Panel();
+            button1 = new Guna.UI2.WinForms.Guna2Button();
             comboBox1 = new ComboBox();
             textBox2 = new TextBox();
-            button1 = new Button();
             label2 = new Label();
             label1 = new Label();
             dataGridView1 = new DataGridView();
@@ -47,9 +49,9 @@
             // panel1
             // 
             panel1.BackColor = Color.AliceBlue;
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -59,6 +61,26 @@
             panel1.TabIndex = 0;
             panel1.Click += panel1_Click1;
             panel1.Paint += panel1_Paint;
+            // 
+            // button1
+            // 
+            button1.BorderColor = Color.FromArgb(192, 255, 192);
+            button1.BorderRadius = 15;
+            button1.CustomizableEdges = customizableEdges1;
+            button1.DisabledState.BorderColor = Color.DarkGray;
+            button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            button1.FillColor = Color.LimeGreen;
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(29, 32);
+            button1.Name = "button1";
+            button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            button1.Size = new Size(111, 36);
+            button1.TabIndex = 18;
+            button1.Text = "+إضافة ";
+            button1.Click += button1_Click_1;
             // 
             // comboBox1
             // 
@@ -76,18 +98,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(233, 27);
             textBox2.TabIndex = 12;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.LimeGreen;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(38, 19);
-            button1.Name = "button1";
-            button1.Size = new Size(101, 39);
-            button1.TabIndex = 11;
-            button1.Text = "إضافة +";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
             // 
             // label2
             // 
@@ -117,11 +127,12 @@
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { ClassID, ClassName, StageName, Division, Active });
             dataGridView1.Location = new Point(9, 129);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RightToLeft = RightToLeft.Yes;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1037, 389);
-            dataGridView1.TabIndex = 4;
+            dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // ClassID
@@ -129,30 +140,35 @@
             ClassID.HeaderText = "#";
             ClassID.MinimumWidth = 6;
             ClassID.Name = "ClassID";
+            ClassID.ReadOnly = true;
             // 
             // ClassName
             // 
             ClassName.HeaderText = "اسم الصف";
             ClassName.MinimumWidth = 6;
             ClassName.Name = "ClassName";
+            ClassName.ReadOnly = true;
             // 
             // StageName
             // 
             StageName.HeaderText = "المرحلة";
             StageName.MinimumWidth = 6;
             StageName.Name = "StageName";
+            StageName.ReadOnly = true;
             // 
             // Division
             // 
             Division.HeaderText = "شعب الصف";
             Division.MinimumWidth = 6;
             Division.Name = "Division";
+            Division.ReadOnly = true;
             // 
             // Active
             // 
             Active.HeaderText = "الحالة";
             Active.MinimumWidth = 6;
             Active.Name = "Active";
+            Active.ReadOnly = true;
             // 
             // UserControlClass
             // 
@@ -174,11 +190,11 @@
 
         private Panel panel1;
         private TextBox textBox2;
-        private Button button1;
         private Label label2;
         private Label label1;
         private DataGridView dataGridView1;
         private ComboBox comboBox1;
+        private Guna.UI2.WinForms.Guna2Button button1;
         private DataGridViewTextBoxColumn ClassID;
         private DataGridViewTextBoxColumn ClassName;
         private DataGridViewTextBoxColumn StageName;

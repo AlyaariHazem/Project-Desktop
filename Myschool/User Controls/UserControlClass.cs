@@ -22,6 +22,7 @@ namespace Myschool.User_Controls
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             // Load stages into the ComboBox
+            LoadData();
             LoadStagesIntoComboBox();
         }
 
@@ -49,9 +50,17 @@ namespace Myschool.User_Controls
                     dataGridView1.Columns.Add("Note", "ملاحظة");
                     dataGridView1.Columns.Add("Active", "الحالة");
 
+
                     // Add Edit and Delete button columns
                     AddButtonColumn("Edit", "تعديل", "تعديل");
                     AddButtonColumn("Delete", "حـذف", "حـذف");
+
+                    dataGridView1.Columns["ClassID"].Width = 45; // Adjust the width of specific columns
+                    dataGridView1.Columns["ClassName"].Width = 110;
+                    dataGridView1.Columns["Edit"].Width = 80;
+                    dataGridView1.Columns["Delete"].Width = 80;
+
+                    dataGridView1.DefaultCellStyle.Font = new Font("Arial", 10); // Adjust the font and size as needed
 
                     foreach (DataRow row in dataTable.Rows)
                     {
@@ -89,44 +98,12 @@ namespace Myschool.User_Controls
             using (var db = new DatabaseHelper())
             {
                 string query = "SELECT StageID, StageName FROM Stages";
-                try
-                {
-                    DataTable dataTable = db.Select(query);
-
-                    comboBox1.Items.Clear();
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        // Use an anonymous object for StageID and StageName
-                        comboBox1.Items.Add(new { StageID = row["StageID"], StageName = row["StageName"].ToString() });
-                    }
-
-                    // Set the ComboBox to display StageName
-                    comboBox1.DisplayMember = "StageName";
-                    comboBox1.ValueMember = "StageID";
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred while loading stages: " + ex.Message);
-                }
+                db.FillComboBox(comboBox1, "Stages", "StageName", "StageID");
             }
         }
 
         // Button click handler (Add or Edit)
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (button1.Text == "حفظ")
-            {
-                AddClass();
-            }
-            else if (button1.Text == "تعديل")
-            {
-                SaveChanges();
-            }
-            else
-            {
-                AddClass();
-            }
-        }
+        
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -313,6 +290,22 @@ namespace Myschool.User_Controls
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (button1.Text == "حفظ")
+            {
+                AddClass();
+            }
+            else if (button1.Text == "تعديل")
+            {
+                SaveChanges();
+            }
+            else
+            {
+                AddClass();
+            }
         }
     }
 }

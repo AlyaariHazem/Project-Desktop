@@ -55,6 +55,8 @@
             TreeNode treeNode24 = new TreeNode("المدونات");
             TreeNode treeNode25 = new TreeNode("الإدارة");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             label2 = new Label();
@@ -65,14 +67,15 @@
             treeView1 = new TreeView();
             imageList1 = new ImageList(components);
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            panel3 = new Panel();
             pictureBox3 = new PictureBox();
+            guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
+            label4 = new Label();
             button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            guna2CustomGradientPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -148,7 +151,7 @@
             treeView1.BackColor = Color.White;
             treeView1.ImageIndex = 0;
             treeView1.ImageList = imageList1;
-            treeView1.Location = new Point(4, 123);
+            treeView1.Location = new Point(4, 127);
             treeView1.Name = "treeView1";
             treeNode1.Name = "Node2";
             treeNode1.Text = "معلومات المدرسة";
@@ -214,7 +217,7 @@
             treeView1.RightToLeft = RightToLeft.Yes;
             treeView1.RightToLeftLayout = true;
             treeView1.SelectedImageIndex = 0;
-            treeView1.Size = new Size(226, 629);
+            treeView1.Size = new Size(226, 622);
             treeView1.TabIndex = 0;
             treeView1.AfterSelect += treeView1_AfterSelect;
             // 
@@ -249,38 +252,48 @@
             imageList1.Images.SetKeyName(23, "icon-27.png");
             imageList1.Images.SetKeyName(24, "icon-28.png");
             // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.BorderStyle = BorderStyle.FixedSingle;
-            panel3.Controls.Add(pictureBox3);
-            panel3.Controls.Add(button1);
-            panel3.Location = new Point(4, 65);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(226, 59);
-            panel3.TabIndex = 4;
-            // 
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.icon_1;
-            pictureBox3.Location = new Point(167, 7);
+            pictureBox3.Location = new Point(179, 11);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(36, 37);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
+            // guna2CustomGradientPanel1
+            // 
+            guna2CustomGradientPanel1.BorderColor = Color.Black;
+            guna2CustomGradientPanel1.BorderRadius = 5;
+            guna2CustomGradientPanel1.BorderThickness = 1;
+            guna2CustomGradientPanel1.Controls.Add(label4);
+            guna2CustomGradientPanel1.Controls.Add(pictureBox3);
+            guna2CustomGradientPanel1.Controls.Add(button1);
+            guna2CustomGradientPanel1.CustomizableEdges = customizableEdges1;
+            guna2CustomGradientPanel1.Location = new Point(4, 66);
+            guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
+            guna2CustomGradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2CustomGradientPanel1.Size = new Size(226, 59);
+            guna2CustomGradientPanel1.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.White;
+            label4.Location = new Point(56, 18);
+            label4.Name = "label4";
+            label4.Size = new Size(112, 20);
+            label4.TabIndex = 6;
+            label4.Text = "الصفحة الرئيسية";
+            // 
             // button1
             // 
-            button1.BackColor = Color.White;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Location = new Point(-7, -1);
+            button1.Location = new Point(0, 2);
             button1.Name = "button1";
-            button1.Size = new Size(233, 59);
-            button1.TabIndex = 4;
-            button1.Text = "الصفحة الرئيسية";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Size = new Size(223, 57);
+            button1.TabIndex = 0;
+            button1.UseVisualStyleBackColor = true;
             // 
             // Dashboard
             // 
@@ -288,8 +301,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.AliceBlue;
             ClientSize = new Size(1329, 753);
+            Controls.Add(guna2CustomGradientPanel1);
             Controls.Add(panel2);
-            Controls.Add(panel3);
             Controls.Add(label3);
             Controls.Add(pictureBox2);
             Controls.Add(panel1);
@@ -307,8 +320,9 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            guna2CustomGradientPanel1.ResumeLayout(false);
+            guna2CustomGradientPanel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -323,9 +337,10 @@
         private Panel panel2;
         private TreeView treeView1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Panel panel3;
         private PictureBox pictureBox3;
-        private Button button1;
         private ImageList imageList1;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
+        private Label label4;
+        private Button button1;
     }
 }

@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            button1 = new Guna.UI2.WinForms.Guna2Button();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
-            button1 = new Button();
             label2 = new Label();
             label1 = new Label();
             dataGridView1 = new DataGridView();
@@ -49,17 +53,37 @@
             // panel1
             // 
             panel1.BackColor = Color.AliceBlue;
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
             panel1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(8, 10);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1054, 130);
+            panel1.Size = new Size(1043, 113);
             panel1.TabIndex = 2;
             panel1.Click += panel1_Click;
+            // 
+            // button1
+            // 
+            button1.BorderColor = Color.FromArgb(192, 255, 192);
+            button1.BorderRadius = 15;
+            button1.CustomizableEdges = customizableEdges1;
+            button1.DisabledState.BorderColor = Color.DarkGray;
+            button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            button1.FillColor = Color.LimeGreen;
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(22, 24);
+            button1.Name = "button1";
+            button1.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            button1.Size = new Size(111, 36);
+            button1.TabIndex = 19;
+            button1.Text = "+إضافة ";
+            button1.Click += button1_Click;
             // 
             // textBox2
             // 
@@ -74,19 +98,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(234, 27);
             textBox1.TabIndex = 3;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.LimeGreen;
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(43, 27);
-            button1.Name = "button1";
-            button1.Size = new Size(104, 35);
-            button1.TabIndex = 2;
-            button1.Text = "إضافة +";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
             // 
             // label2
             // 
@@ -112,14 +123,31 @@
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.AliceBlue;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, Column2, Column3, Column4, Column5, Column6, Column33 });
-            dataGridView1.Location = new Point(17, 136);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.Location = new Point(11, 129);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RightToLeft = RightToLeft.Yes;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1037, 375);
+            dataGridView1.Size = new Size(1037, 382);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             dataGridView1.Click += UserControlStageClass_Click_1;
@@ -129,42 +157,49 @@
             dataGridViewTextBoxColumn1.HeaderText = "#";
             dataGridViewTextBoxColumn1.MinimumWidth = 6;
             dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // Column2
             // 
             Column2.HeaderText = "اسم المرحلة";
             Column2.MinimumWidth = 6;
             Column2.Name = "Column2";
+            Column2.ReadOnly = true;
             // 
             // Column3
             // 
             Column3.HeaderText = "الصفوف";
             Column3.MinimumWidth = 6;
             Column3.Name = "Column3";
+            Column3.ReadOnly = true;
             // 
             // Column4
             // 
             Column4.HeaderText = "إجمالي الطلاب";
             Column4.MinimumWidth = 6;
             Column4.Name = "Column4";
+            Column4.ReadOnly = true;
             // 
             // Column5
             // 
             Column5.HeaderText = "الملاحظة";
             Column5.MinimumWidth = 6;
             Column5.Name = "Column5";
+            Column5.ReadOnly = true;
             // 
             // Column6
             // 
             Column6.HeaderText = "الحالة";
             Column6.MinimumWidth = 6;
             Column6.Name = "Column6";
+            Column6.ReadOnly = true;
             // 
             // Column33
             // 
             Column33.HeaderText = "العملية";
             Column33.MinimumWidth = 6;
             Column33.Name = "Column33";
+            Column33.ReadOnly = true;
             // 
             // UserControlStageClass
             // 
@@ -173,6 +208,7 @@
             AutoSize = true;
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
+            Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "UserControlStageClass";
             Size = new Size(1057, 518);
             Load += UserControlStageClass_Load_1;
@@ -198,7 +234,6 @@
         private Panel panel1;
         private TextBox textBox2;
         private TextBox textBox1;
-        private Button button1;
         private Label label2;
         private Label label1;
         private DataGridView dataGridView1;
@@ -210,5 +245,6 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private DataGridViewTextBoxColumn Column33;
+        private Guna.UI2.WinForms.Guna2Button button1;
     }
 }

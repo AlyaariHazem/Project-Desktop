@@ -16,6 +16,8 @@ namespace Myschool.User_Controls
         {
             InitializeComponent();
 
+            dataGridView1.ReadOnly = true;
+
             // Change header color for DataGridView
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LimeGreen;
@@ -53,6 +55,15 @@ namespace Myschool.User_Controls
                     // Add Edit and Delete button columns
                     AddButtonColumn("Edit", "تعديل", "تعديل");
                     AddButtonColumn("Delete", "حـذف", "حـذف");
+
+                    dataGridView1.Columns["DivisionID"].Width = 45; // Adjust the width of specific columns
+                    dataGridView1.Columns["Students"].Width = 110; // Adjust the width of specific columns
+                    dataGridView1.Columns["DivisionName"].Width = 100;
+                    dataGridView1.Columns["ClassName"].Width = 100;
+                    dataGridView1.Columns["Edit"].Width = 80;
+                    dataGridView1.Columns["Delete"].Width = 80;
+
+                    dataGridView1.DefaultCellStyle.Font = new Font("Arial", 10); // Adjust the font and size as needed
 
                     foreach (DataRow row in dataTable.Rows)
                     {
@@ -159,9 +170,9 @@ namespace Myschool.User_Controls
                     {
                         if (reader.Read())
                         {
-                            hiddenDivisionID = divisionID; 
-                            comboBox1.Text = reader["DivisionName"].ToString(); 
-                            textBox2.Text = reader["ClassName"].ToString(); 
+                            hiddenDivisionID = divisionID;
+                            comboBox1.Text = reader["DivisionName"].ToString();
+                            textBox2.Text = reader["ClassName"].ToString();
                         }
                         else
                         {
@@ -297,6 +308,13 @@ namespace Myschool.User_Controls
             textBox2.Clear();
             button1.Text = "إضافة";
             LoadData();
+        }
+
+        private void UserControlDivision_Click(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = -1;
+            textBox2.Clear();
+            button1.Text = "إضافة";
         }
     }
 

@@ -40,7 +40,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(1033, 206);
+            label1.Location = new Point(1033, 209);
             label1.Name = "label1";
             label1.Size = new Size(235, 32);
             label1.TabIndex = 0;
@@ -49,11 +49,11 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.Red;
+            button1.BackColor = Color.DeepSkyBlue;
             button1.ForeColor = SystemColors.ButtonHighlight;
-            button1.Location = new Point(1084, 376);
+            button1.Location = new Point(1065, 468);
             button1.Name = "button1";
-            button1.Size = new Size(132, 34);
+            button1.Size = new Size(194, 50);
             button1.TabIndex = 1;
             button1.Text = "تسجيل الدخول";
             button1.UseVisualStyleBackColor = false;
@@ -62,7 +62,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.logo1;
-            pictureBox1.Location = new Point(1263, 14);
+            pictureBox1.Location = new Point(1251, 28);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(52, 43);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -79,6 +79,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 3;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // Welcome
             // 

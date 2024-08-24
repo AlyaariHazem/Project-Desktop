@@ -169,6 +169,7 @@
             Name = "UserControlDivision";
             Size = new Size(1054, 518);
             Load += UserControlDivision_Load;
+            Click+= UserControlDivision_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

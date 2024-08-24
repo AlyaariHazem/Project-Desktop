@@ -48,6 +48,15 @@ namespace Myschool.User_Controls
                     AddButtonColumn("Edit", "تعديل", "تعديل");
                     AddButtonColumn("Delete", "حـذف", "حـذف");
 
+                    dataGridView1.Columns["StageID"].Width = 45; // Adjust the width of specific columns
+                    dataGridView1.Columns["TotalStudents"].Width = 110; // Adjust the width of specific columns
+                    dataGridView1.Columns["StageName"].Width = 110; // Adjust the width of specific columns
+                    dataGridView1.Columns["Active"].Width = 80;
+                    dataGridView1.Columns["Edit"].Width = 80;
+                    dataGridView1.Columns["Delete"].Width = 80;
+
+                    dataGridView1.DefaultCellStyle.Font = new Font("Arial", 10); // Adjust the font and size as needed
+
                     // Populate rows with data
                     foreach (DataRow row in dataTable.Rows)
                     {
@@ -79,23 +88,6 @@ namespace Myschool.User_Controls
                 UseColumnTextForButtonValue = true
             };
             dataGridView1.Columns.Add(buttonColumn);
-        }
-
-        // Button click handler (Add or Edit)
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (button1.Text == "حفظ")
-            {
-                AddStage();
-            }
-            else if (button1.Text == "تعديل")
-            {
-                SaveChanges();
-            }
-            else
-            {
-                AddStage();
-            }
         }
 
         // Method to add a new stage
@@ -266,6 +258,22 @@ namespace Myschool.User_Controls
             textBox1.Text = "";
             textBox2.Text = "";
             button1.Text = "إضافة+";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (button1.Text == "حفظ")
+            {
+                AddStage();
+            }
+            else if (button1.Text == "تعديل")
+            {
+                SaveChanges();
+            }
+            else
+            {
+                AddStage();
+            }
         }
     }
 }
